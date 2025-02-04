@@ -99,13 +99,13 @@ class Blog {
         this.titleInput.value = blog.title;
         this.contentInput.value = blog.content;
         this.editIdInput.value = blog.id;
-        this.formTitle.textContent = "แกไขีบล็อก";
+        this.formTitle.textContent = "แก้ไขบล็อก";
         this.cancelBtn.classList.remove("hidden");
         window.scrollTo(0, 0);
       }
     }
     deleteBlog(id) {
-      if (confirm("ต้องการ์ล็บบล็อกนใชหร์อไม?")) {
+      if (confirm("ต้องการลบบล็อกนี้ใช่หรือไม่?")) {
         this.blogManager.deleteBlog(id);
         this.render();
       }
@@ -113,7 +113,7 @@ class Blog {
     resetForm() {
       this.form.reset();
       this.editIdInput.value = "";
-      this.formTitle.textContent = "เขียนบล็อกใหม";
+      this.formTitle.textContent = "เขียนบล็อกใหม่";
       this.cancelBtn.classList.add("hidden");
     }
     render() {
@@ -141,7 +141,24 @@ class Blog {
         )
         .join("");
     }
-   }
+}
+    function addTodo() {
+        const input = document.getElementById("title");
+        const text = input.value.trim();
+        if (text) {
+            todos.push({ text, done: false });
+            input.value = "";
+            displayTodos();
+        }
+    }
+    function toggleTodo(index) {
+        todos[index].done = !todos[index].done;
+        displayTodos();
+    }
+    function deleteTodo(index) {
+        todos.splice(index, 1);
+        displayTodos();
+    }
    // สร์าง instance แล็ะเร์มต้นใชงาน
    const blogManager = new BlogManager();
    const blogUI = new BlogUI(blogManager);
